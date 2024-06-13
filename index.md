@@ -1,5 +1,5 @@
 # 🤖 Gesture Controlled Robot 🤖
-My project is a robot controlled by gestures from a bluetooth-connected gauntlet, that moves based on specific movements and directions, such as rotation and forward and backwards movement 🦿
+My project is a robot controlled by gestures from a bluetooth-connected gauntlet, that moves based on specific movements and directions, such as rotation and forward and backwards movement 🦾
 
 
 <!---ADD BIGGEST CHALLENGE AND TAKEAWAY LATER-->
