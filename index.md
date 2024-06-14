@@ -6,7 +6,7 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| Daniel J. | Carlmont | Mechanical Engineering | Incoming Junior
+| Daniel J. | Carlmont High School | Mechanical Engineering | Incoming Junior
 
 <!---**Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
