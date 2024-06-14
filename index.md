@@ -114,8 +114,8 @@ Don't forget to place the link of where to buy each component inside the quotati
 # Other Resources/Examples
 Here are some of the other resources, examples, and videos I used to create my final project.
 - [How to connect “L298N Dual H-Bridge Motor Controller” to “Arduino Uno”](https://www.youtube.com/watch?v=OkHR1BZCcqA)
-- [How to Make Arduino based Hand Gesture Control Robot &#40Part 1&#41](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [How to Make Arduino based Hand Gesture Control Robot &#40Part 2&#41](https://www.youtube.com/watch?v=wZurHScVyAM)
+- [How to Make Arduino based Hand Gesture Control Robot (Part 1)](https://sviatil0.github.io/Sviatoslav_BSE/)
+- [How to Make Arduino based Hand Gesture Control Robot (Part 2)](https://www.youtube.com/watch?v=wZurHScVyAM)
 
 
 
