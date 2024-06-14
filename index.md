@@ -91,7 +91,7 @@ Don't forget to place the link of where to buy each component inside the quotati
 | LED display board | Displays the various games | x2 |
 | 5V USB power cable | Possible external modifications to code / debugging | x1 |
 | Battery Case | Powers the project | x1 |
-| Functional buttons | Controls in-game direction, music, and fire | x7 |
+| Functional buttons | Controls in-game direction, music, firing, etc | x7 |
 | LED score board | Displays current score for each game | x1 |
 | Rectangular transparent  frame | Used between the frame to hold the game | x2 |
 | Side transparent frame | Pins the two rectangular frames together | x4 | 
