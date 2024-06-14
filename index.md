@@ -87,9 +87,9 @@ Don't forget to place the link of where to buy each component inside the quotati
 
 | **Part** | **Note** | **Quantity** |
 |:--:|:--:|:--:|:--:|
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 |
+| Solderless breadboard | Main frame for the build | x1 |
+| LED display board | Displays the various games | x2 |
+| 5V USB power cable | Possible external modifications to code / debugging | x1 |
 | Item Name | What the item is used for | x1 |
 | Item Name | What the item is used for | x1 |
 | Item Name | What the item is used for | x1 |
