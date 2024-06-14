@@ -90,11 +90,11 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Solderless breadboard | Main frame for the build | x1 |
 | LED display board | Displays the various games | x2 |
 | 5V USB power cable | Possible external modifications to code / debugging | x1 |
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 |
-| Item Name | What the item is used for | x1 | 
+| Battery Case | Powers the project | x1 |
+| Functional buttons | Controls in-game direction, music, and fire | x7 |
+| LED score board | Displays current score for each game | x1 |
+| Rectangular transparent  frame | Used between the frame to hold the game | x2 |
+| Side transparent frame | Pins the two rectangular frames together | x4 | 
 
 # Bill of Materials &#40;Main Project&#41;
 
