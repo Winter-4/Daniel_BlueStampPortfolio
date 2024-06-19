@@ -42,25 +42,12 @@ For your second milestone, explain what you've worked on since your previous mil
 
 For my first milestone, I have created the main body of the machine, creating the backbone for bluetooth connection. All motors work in coordination with the code inputted into the Arduino, being transported into an L298N Motor Controller. All of this is being powered by a battery case with an On/Off switch. One challenge I ran into was providing enough power for the motors to run. As a result, I used my computer to power the motors when testing, and plan to substitute and test my battery, case, and wiring for further ease of use. 
 
-<!---
-# Bill of Materials &#40;Main Project&#41;
 
-| **Part** | **Note** | **Price** | **Link** |
-|:--:|:--:|:--:|:--:|
-| Arduino UNO | Inputs code from Arduino IDE app | $25.81 | <a href="https://www.newark.com/arduino/a000066/dev-board-atmega328-arduino-uno/dp/78T1601?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-24"> Link </a> |
-| Arduino Nano R3 | Transports inputs in the hand-mounted bluetooth gauntlet | $23.23 | <a href="https://www.newark.com/arduino/a000005/dev-board-atmega328-arduino-nano/dp/13T9275"> Link </a> |
-| Inertial Measurement Unit (IMU) (6 deg of freedom)
- | What the item is used for | $5.99 | <a href="https://www.amazon.com/dp/B008BOPN40/?tag=octopart00-20"> Link </a> |
-| SparkFun Dual H-Bridge motor drivers L298 | Transports actions into the motors using code from the Arduino | $9.99 | <a href="https://www.amazon.com/BOJACK-H-Bridge-Controller-Intelligent-Mega2560/dp/B0C5JCF5RS/ref=sr_1_3?crid=3VGUNHF3A1PXX&dib=eyJ2IjoiMSJ9.Uhkp4V4YuMhSQCL0zp7DORZTnVDlTZ_jCoPCZv_PKdrIzY2gw3yF4NPgx-YMXvSPhbT6gfN7i1dEACtqBngQlqzHByRTtDJmhXIVV7SxnENw7GO-GjMoy3nFx04Mt011TtpEXyzXag0sXJH_3p3jeMU2GWRwmXZoNCzrld6p-rB0pnJpQIDvEcgWD81larQPPpcmARbK7EHFQhRZCHvTCN9ZN9wPqJ9K6FSXale2ykM.K4orzSvxNWtp3LtM1ai6V9j0h_jb7ytcMbsZw7oN0os&dib_tag=se&keywords=SparkFun+Dual+H-Bridge+motor+drivers+L298&qid=1718755008&sprefix=sparkfun+dual+h-bridge+motor+drivers+l298%2Caps%2C210&sr=8-3"> Link </a> |
-| Solderless Breadboard Half Size | Connects the actions through bluetooth | $4.96 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> | --->
-
-<!---
 # Schematics 
-Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
+<img src="https://marobotic.com/wp-content/uploads/2024/02/Arduino-based-Hand-Gesture-Control-Robot-Circuit-Diagram-MArobotics.png" alt="Wiring configuration">
 
+
+<!---
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
@@ -77,6 +64,24 @@ void loop() {
 }
 ```
 -->
+
+<!---
+# Bill of Materials &#40;Main Project&#41;
+
+| **Part** | **Note** | **Price** | **Link** |
+|:--:|:--:|:--:|:--:|
+| Arduino UNO | Inputs code from Arduino IDE app | $25.81 | <a href="https://www.newark.com/arduino/a000066/dev-board-atmega328-arduino-uno/dp/78T1601?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-24"> Link </a> |
+| Arduino Nano R3 | Transports inputs in the hand-mounted bluetooth gauntlet | $23.23 | <a href="https://www.newark.com/arduino/a000005/dev-board-atmega328-arduino-nano/dp/13T9275"> Link </a> |
+| Inertial Measurement Unit (IMU) (6 deg of freedom)
+ | What the item is used for | $5.99 | <a href="https://www.amazon.com/dp/B008BOPN40/?tag=octopart00-20"> Link </a> |
+| SparkFun Dual H-Bridge motor drivers L298 | Transports actions into the motors using code from the Arduino | $9.99 | <a href="https://www.amazon.com/BOJACK-H-Bridge-Controller-Intelligent-Mega2560/dp/B0C5JCF5RS/ref=sr_1_3?crid=3VGUNHF3A1PXX&dib=eyJ2IjoiMSJ9.Uhkp4V4YuMhSQCL0zp7DORZTnVDlTZ_jCoPCZv_PKdrIzY2gw3yF4NPgx-YMXvSPhbT6gfN7i1dEACtqBngQlqzHByRTtDJmhXIVV7SxnENw7GO-GjMoy3nFx04Mt011TtpEXyzXag0sXJH_3p3jeMU2GWRwmXZoNCzrld6p-rB0pnJpQIDvEcgWD81larQPPpcmARbK7EHFQhRZCHvTCN9ZN9wPqJ9K6FSXale2ykM.K4orzSvxNWtp3LtM1ai6V9j0h_jb7ytcMbsZw7oN0os&dib_tag=se&keywords=SparkFun+Dual+H-Bridge+motor+drivers+L298&qid=1718755008&sprefix=sparkfun+dual+h-bridge+motor+drivers+l298%2Caps%2C210&sr=8-3"> Link </a> |
+| Solderless Breadboard Half Size | Connects the actions through bluetooth | $4.96 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> | --->
+
+
+
 
 # Other Resources/Examples
 Here are some of the other resources, examples, and videos I used to create my final project.
