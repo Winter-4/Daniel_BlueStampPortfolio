@@ -49,9 +49,10 @@ For my first milestone, I have created the main body of the machine, creating th
 |:--:|:--:|:--:|:--:|
 | Arduino UNO | Inputs code from Arduino IDE app | $25.81 | <a href="https://www.newark.com/arduino/a000066/dev-board-atmega328-arduino-uno/dp/78T1601?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-24"> Link </a> |
 | Arduino Nano R3 | Transports inputs in the hand-mounted bluetooth gauntlet | $23.23 | <a href="https://www.newark.com/arduino/a000005/dev-board-atmega328-arduino-nano/dp/13T9275"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
+| Inertial Measurement Unit (IMU) (6 deg of freedom)
+ | What the item is used for | $5.99 | <a href="https://www.amazon.com/dp/B008BOPN40/?tag=octopart00-20"> Link </a> |
+| SparkFun Dual H-Bridge motor drivers L298 | Transports actions into the motors using code from the Arduino | $9.99 | <a href="https://www.amazon.com/BOJACK-H-Bridge-Controller-Intelligent-Mega2560/dp/B0C5JCF5RS/ref=sr_1_3?crid=3VGUNHF3A1PXX&dib=eyJ2IjoiMSJ9.Uhkp4V4YuMhSQCL0zp7DORZTnVDlTZ_jCoPCZv_PKdrIzY2gw3yF4NPgx-YMXvSPhbT6gfN7i1dEACtqBngQlqzHByRTtDJmhXIVV7SxnENw7GO-GjMoy3nFx04Mt011TtpEXyzXag0sXJH_3p3jeMU2GWRwmXZoNCzrld6p-rB0pnJpQIDvEcgWD81larQPPpcmARbK7EHFQhRZCHvTCN9ZN9wPqJ9K6FSXale2ykM.K4orzSvxNWtp3LtM1ai6V9j0h_jb7ytcMbsZw7oN0os&dib_tag=se&keywords=SparkFun+Dual+H-Bridge+motor+drivers+L298&qid=1718755008&sprefix=sparkfun+dual+h-bridge+motor+drivers+l298%2Caps%2C210&sr=8-3"> Link </a> |
+| Solderless Breadboard Half Size | Connects the actions through bluetooth | $4.96 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> | --->
@@ -77,6 +78,12 @@ void loop() {
 ```
 -->
 
+# Other Resources/Examples
+Here are some of the other resources, examples, and videos I used to create my final project.
+- [How to connect “L298N Dual H-Bridge Motor Controller” to “Arduino Uno”](https://www.youtube.com/watch?v=OkHR1BZCcqA)
+- [Arduino Based Gesture Controlled Robot Overview]([https://www.youtube.com/watch?v=wZurHScVyAM](https://marobotic.com/2023/12/08/arduino-based-hand-gesture-control-robot/))
+  
+
 # Starter Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/gqJXe-XYi_0?si=VRvozP0RvAkL96Hh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -101,11 +108,6 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Side transparent frame | Pins the two rectangular frames together | x4 | 
 
 
-# Other Resources/Examples
-Here are some of the other resources, examples, and videos I used to create my final project.
-- [How to connect “L298N Dual H-Bridge Motor Controller” to “Arduino Uno”](https://www.youtube.com/watch?v=OkHR1BZCcqA)
-- [Arduino Based Gesture Controlled Robot Overview]([https://www.youtube.com/watch?v=wZurHScVyAM](https://marobotic.com/2023/12/08/arduino-based-hand-gesture-control-robot/))
-  
 
 
 
