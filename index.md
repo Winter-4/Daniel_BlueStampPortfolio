@@ -6,7 +6,9 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 |:--:|:--:|:--:|:--:|
 | Daniel J. | Carlmont High School | Mechanical Engineering | Incoming Junior
 
-![Headstone Image](headshot.JPG)
+<p align = "center">
+<img src = "headshot.JPG" alt = "Headshot" height = "500">
+</p>
   
 # Final Milestone
 
