@@ -6,18 +6,18 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 |:--:|:--:|:--:|:--:|
 | Daniel J. | Carlmont High School | Mechanical Engineering | Incoming Junior
 
-<!--<p align="center">
-  <img src="headshot.JPG" alt="Headshot" height="500" style="border: 3px solid green;">
-</p> -->
-
 <p align="center">
+  <img src="headshot.JPG" alt="Headshot" height="500" style="border: 3px solid green;">
+</p> 
+
+<!--<p align="center">
   <img src="headshot.JPG" alt="Headshot" height="500" style="
     border: 5px solid;
     border-image: linear-gradient(to right, 
       red, orange, yellow, green, blue, indigo, violet) 1;
     animation: rainbow-border 3s infinite;
   ">
-</p>
+</p> -->
 
 
 # Final Milestone
