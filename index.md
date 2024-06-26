@@ -38,8 +38,9 @@ For my first milestone, I have created the main body of the machine, creating th
 
 # Schematics 
 <p align="center">
-  <img src="https://marobotic.com/wp-content/uploads/2024/02/Arduino-based-Hand-Gesture-Control-Robot-Circuit-Diagram-MArobotics.png" alt="Wiring configuration" style="border: 3px solid; border-image: linear-gradient(to right, yellow, green) 1;">
+  <img src="https://marobotic.com/wp-content/uploads/2024/02/Arduino-based-Hand-Gesture-Control-Robot-Circuit-Diagram-MArobotics.png" alt="Wiring configuration" style="border: 5px solid; border-image: linear-gradient(to right, yellow, green, blue) 1;">
 </p>
+
 
 
 
