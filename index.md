@@ -55,191 +55,31 @@ For my first milestone, I have created the main body of the machine, creating th
 
 
 # Code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Code Block</title>
-    <style>
-        .code-container {
-            width: 800px; /* Adjust the width as needed */
-            height: 500px; /* Adjust the height as needed */
-            overflow: auto;
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: #f9f9f9;
-            font-family: monospace;
-        }
-    </style>
-</head>
-<body>
 
-<h2>Hand Code</h2>
-<div class="code-container">
-<pre>
-#include <SoftwareSerial.h>
-SoftwareSerial BT_Serial(3, 2); // RX, TX
+<style>
+ .code-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 500px;
+    height: 800px;
+  }
+</style>
 
-//Assigning buttons to pins
-#define button1 7
-#define button2 12
-
-#include <Wire.h> // I2C communication library
-
-const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
-int16_t AcX, AcY, AcZ;
-
-
-int flag=0;
-
-//Bool definitions
-bool AcX_in_range = true;
-bool AcY_in_range = true;
-
-void setup () {// put your setup code here, to run once
-
-Serial.begin(9600); // start serial communication at 9600bps
-BT_Serial.begin(9600); 
-
-
-// Setting buttons to detecting pulling up of buttons
-pinMode(button1, INPUT_PULLUP);
-pinMode(button2, INPUT_PULLUP);
-
-// Initialize interface to the MPU6050
-Wire.begin();
-Wire.beginTransmission(MPU);
-Wire.write(0x6B);
-Wire.write(0);
-Wire.endTransmission(true);
-
-delay(500); 
-}
-
-
-//defining variables for BT_Serial.write()
-char forward_slow = 'f';
-char forward_fast = 'F';
-char backward_slow = 'b';
-char backward_fast = 'B';
-char left_stationary = 'l';
-char left_circle = 'L';
-char right_stationary = 'r';
-char right_circle = 'R';
-//mecanum wheel ctrls
-char forward_left = '1';
-char forward_right = '2';
-char backward_left = '3';
-char backward_right = '4';
-
-// perpendicular left and right ctrls
-char perpendicular_left = '5';
-char perpendicular_right = '6';
-
-void loop () {
-Read_accelerometer(); // Read MPU6050 accelerometer
-
-
-// Assigning variable to digitalread of two buttons
-int button1_state = digitalRead(button1);
-int button2_state = digitalRead(button2);
-
-// Constantly keep booleans for AcX in check 
-if(AcX > 80 && AcX < 100){(AcX_in_range = true);}
-else{(AcX_in_range = false);}
-
-// Constantly keep booleans for AcY in check 
-if(AcY > 80 && AcY < 100){(AcY_in_range = true);}
-else{(AcY_in_range = false);}
-
-
-// flag value of 2 is used for the acceleration based on higher degree of turning (capital letters)
-// non-capital letters are slower ; capital letters are faster
-//FORWARD
-if(AcX < 75 && AcX > 40 && flag == 0 && AcY_in_range == true){flag=1; BT_Serial.write(forward_slow);}
-if(AcX < 40 && flag == 1 && AcY_in_range == true){(flag = 2);} // consider removing the AcY bool (try testing ltr)
-if(AcX < 40 && flag == 2 && AcY_in_range == true){flag = 0; BT_Serial.write(forward_fast);}
-
-
-
-//BACKWARD
-if(AcX > 110 && AcX<150 && flag == 0 && AcY_in_range == true){flag = 1; BT_Serial.write(backward_slow);}
-if(AcX > 150 && flag == 1 && AcY_in_range == true){(flag = 2);} // consider removing the AcY bool (try testing ltr)
-if(AcX > 150 && flag == 2 && AcY_in_range == true){flag = 0; BT_Serial.write(backward_fast);}
-
-
-// 'l'/'L'
-if(AcY < 60 && AcY > 30 && flag == 0 && AcX_in_range == true){flag = 1; BT_Serial.write(left_stationary); } // 'L' is turn left in a circle, 'l' is turn left in place
-if(AcY < 30 && flag == 1 && AcX_in_range == true){(flag = 2);} // consider removing the AcX bool (try testing ltr)
-if(AcY < 30 && flag == 2 && AcX_in_range == true){flag = 0; BT_Serial.write(left_circle);}
-
-// 'r'/'R'
-if(AcY>120 && AcY < 150 && flag == 0 && AcX_in_range == true){flag=1; BT_Serial.write(right_stationary);} // 'R' is turn right in a circle, 'r' us turn right in place
-if(AcY > 150 && flag == 1 && AcX_in_range == true){(flag = 2);} // consider removing the AcX bool (try testing ltr)
-if(AcY > 150 && flag == 2 && AcX_in_range == true){flag = 0; BT_Serial.write(right_circle);}
-
-
-//MECANUM WHEEL DIRECTIONS [head of the robot is the side of the UNO]
-
-//forward + left 
-if(AcX < 65 && AcY < 75 && flag == 0){flag = 1; BT_Serial.write(forward_left);}
- 
-//forward + right 
-if(AcX < 65 && AcY > 100 && flag == 0){flag = 1; BT_Serial.write(forward_right);}
-
-//backward + left
-if(AcX > 100 && AcY < 70 && flag == 0){flag = 1; BT_Serial.write(backward_left);}
-
-//backward + right
-if(AcX > 105 && AcY > 105 && flag == 0){flag = 1; BT_Serial.write(backward_right);}
-
-//perpendicular left and right with button inputs
-
-if(button1_state == 0 && flag == 0){flag = 3; BT_Serial.write(perpendicular_left);}
-
-if(button2_state == 0 && flag == 0){flag = 3; BT_Serial.write(perpendicular_right);}
-
-if(AcX>80 && AcX<110 && AcY>70 && AcY<120 && flag==1 || flag == 2 || flag == 3 && (button1_state == 1 && button2_state == 1)){flag=0;
-BT_Serial.write('s'); // makes it so everything above this overrides it if they conflict
-
-
-
-
-}
-
-
-
-delay(100);  
-}
-
-void Read_accelerometer(){
-      // Read the accelerometer data
-Wire.beginTransmission(MPU);
-Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
-Wire.endTransmission(false);
-Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
-
-AcX = Wire.read() << 8 | Wire.read(); // X-axis value
-AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
-AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
-
-AcX = map(AcX, -17000, 17000, 0, 180);
-AcY = map(AcY, -17000, 17000, 0, 180);
-AcZ = map(AcZ, -17000, 17000, 0, 180);
-
-Serial.print(AcX);
-Serial.print("\t");
-Serial.print(AcY);
-Serial.print("\t");
-Serial.println(AcZ); 
-}
-</pre>
+<div class="code-box">
+  <div style="background-color: #f0f0f0; padding: 5px; border-bottom: 1px solid #ddd;">
+    <b>Hand Code</b>
+  </div>
+  <pre>
+    <code>
+      void setup() {
+        Serial.begin(9600);
+        Serial.println("Hello World");
+      }
+    </code>
+  </pre>
 </div>
-
-</body>
-</html>
-
 
 
 # Bill of Materials &#40;Main Project&#41;
