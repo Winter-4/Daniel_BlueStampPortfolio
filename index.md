@@ -55,7 +55,7 @@ For my first milestone, I have created the main body of the machine, creating th
 
 
 # Code
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -64,7 +64,7 @@ For my first milestone, I have created the main body of the machine, creating th
     <style>
         .code-container {
             width: 800px; /* Adjust the width as needed */
-            height: 600px; /* Adjust the height as needed */
+            height: 500px; /* Adjust the height as needed */
             overflow: auto;
             border: 1px solid #ccc;
             padding: 10px;
