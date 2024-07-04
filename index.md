@@ -57,13 +57,18 @@ For my first milestone, I have created the main body of the machine, creating th
 # Code
 
 <style>
- .code-box {
+.code-box {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
     overflow-y: auto;
     width: 800px;
     height: 500px;
+  }
+  
+ .code-box pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 </style>
 
@@ -73,14 +78,14 @@ For my first milestone, I have created the main body of the machine, creating th
   </div>
   <pre>
     <code>
-#include <SoftwareSerial.h>
+#include &lt;SoftwareSerial.h&gt;
 SoftwareSerial BT_Serial(3, 2); // RX, TX
 
 //Assigning buttons to pins
 #define button1 7
 #define button2 12
 
-#include <Wire.h> // I2C communication library
+#include &lt;Wire.h&gt; // I2C communication library
 
 const int MPU = 0x68; // I2C address of the MPU6050 accelerometer
 int16_t AcX, AcY, AcZ;
@@ -141,98 +146,31 @@ int button1_state = digitalRead(button1);
 int button2_state = digitalRead(button2);
 
 // Constantly keep booleans for AcX in check 
-if(AcX > 80 && AcX < 100){(AcX_in_range = true);}
+if(AcX &gt; 80 &amp;&amp; AcX &lt; 100){(AcX_in_range = true);}
 else{(AcX_in_range = false);}
 
 // Constantly keep booleans for AcY in check 
-if(AcY > 80 && AcY < 100){(AcY_in_range = true);}
+if(AcY &gt; 80 &amp;&amp; AcY &lt; 100){(AcY_in_range = true);}
 else{(AcY_in_range = false);}
 
 
 // flag value of 2 is used for the acceleration based on higher degree of turning (capital letters)
 // non-capital letters are slower ; capital letters are faster
 //FORWARD
-if(AcX < 75 && AcX > 40 && flag == 0 && AcY_in_range == true){flag=1; BT_Serial.write(forward_slow);}
-if(AcX < 40 && flag == 1 && AcY_in_range == true){(flag = 2);} 
-if(AcX < 40 && flag == 2 && AcY_in_range == true){flag = 0; BT_Serial.write(forward_fast);}
+if(AcX &lt; 75 &amp;&amp; AcX &gt; 40 &amp;&amp; flag == 0 &amp;&amp; AcY_in_range == true){flag=1; BT_Serial.write(forward_slow);}
+if(AcX &lt; 40 &amp;&amp; flag == 1 &amp;&amp; AcY_in_range == true){(flag = 2);} 
+if(AcX &lt; 40 &amp;&amp; flag == 2 &amp;&amp; AcY_in_range == true){flag = 0; BT_Serial.write(forward_fast);}
 
 
 
 //BACKWARD
-if(AcX > 110 && AcX<150 && flag == 0 && AcY_in_range == true){flag = 1; BT_Serial.write(backward_slow);}
-if(AcX > 150 && flag == 1 && AcY_in_range == true){(flag = 2);}
-if(AcX > 150 && flag == 2 && AcY_in_range == true){flag = 0; BT_Serial.write(backward_fast);}
+if(AcX &gt; 110 &amp;&amp; AcX&lt;150 &amp;&amp; flag == 0 &amp;&amp; AcY_in_range == true){flag = 1; BT_Serial.write(backward_slow);}
+if(AcX &gt; 150 &amp;&amp; flag == 1 &amp;&amp; AcY_in_range == true){(flag = 2);}
+if(AcX &gt; 150 &amp;&amp; flag == 2 &amp;&amp; AcY_in_range == true){flag = 0; BT_Serial.write(backward_fast);}
 
 
 // 'l'/'L'
-if(AcY < 60 && AcY > 30 && flag == 0 && AcX_in_range == true){flag = 1; BT_Serial.write(left_stationary); } // 'L' is turn left in a circle, 'l' is turn left in place
-if(AcY < 30 && flag == 1 && AcX_in_range == true){(flag = 2);} // consider removing the AcX bool (try testing ltr)
-if(AcY < 30 && flag == 2 && AcX_in_range == true){flag = 0; BT_Serial.write(left_circle);}
-
-// 'r'/'R'
-if(AcY>120 && AcY < 150 && flag == 0 && AcX_in_range == true){flag=1; BT_Serial.write(right_stationary);} // 'R' is turn right in a circle, 'r' us turn right in place
-if(AcY > 150 && flag == 1 && AcX_in_range == true){(flag = 2);} // consider removing the AcX bool (try testing ltr)
-if(AcY > 150 && flag == 2 && AcX_in_range == true){flag = 0; BT_Serial.write(right_circle);}
-
-
-//MECANUM WHEEL DIRECTIONS [head of the robot is the side of the UNO]
-
-//forward + left 
-if(AcX < 65 && AcY < 75 && flag == 0){flag = 1; BT_Serial.write(forward_left);}
- 
-//forward + right 
-if(AcX < 65 && AcY > 100 && flag == 0){flag = 1; BT_Serial.write(forward_right);}
-
-//backward + left
-if(AcX > 100 && AcY < 70 && flag == 0){flag = 1; BT_Serial.write(backward_left);}
-
-//backward + right
-if(AcX > 105 && AcY > 105 && flag == 0){flag = 1; BT_Serial.write(backward_right);}
-
-//perpendicular left and right with button inputs
-
-if(button1_state == 0 && flag == 0){flag = 3; BT_Serial.write(perpendicular_left);}
-
-if(button2_state == 0 && flag == 0){flag = 3; BT_Serial.write(perpendicular_right);}
-
-if(AcX>80 && AcX<110 && AcY>70 && AcY<120 && flag==1 || flag == 2 || flag == 3 && (button1_state == 1 && button2_state == 1)){flag=0;
-BT_Serial.write('s'); // makes it so everything above this overrides it if they conflict
-
-
-
-
-}
-
-
-
-delay(100);  
-}
-
-void Read_accelerometer(){
-      // Read the accelerometer data
-Wire.beginTransmission(MPU);
-Wire.write(0x3B); // Start with register 0x3B (ACCEL_XOUT_H)
-Wire.endTransmission(false);
-Wire.requestFrom(MPU, 6, true); // Read 6 registers total, each axis value is stored in 2 registers
-
-AcX = Wire.read() << 8 | Wire.read(); // X-axis value
-AcY = Wire.read() << 8 | Wire.read(); // Y-axis value
-AcZ = Wire.read() << 8 | Wire.read(); // Z-axis value
-
-AcX = map(AcX, -17000, 17000, 0, 180);
-AcY = map(AcY, -17000, 17000, 0, 180);
-AcZ = map(AcZ, -17000, 17000, 0, 180);
-
-Serial.print(AcX);
-Serial.print("\t");
-Serial.print(AcY);
-Serial.print("\t");
-Serial.println(AcZ); 
-}
-    </code>
-  </pre>
-</div>
-
+if(AcY &lt; 60 &amp;&amp; AcY &gt; 30 &amp;&amp; flag == 0 &amp;&amp; AcX_in_range == true){flag = 1; BT_Serial.write(left_stationary
 
 # Bill of Materials &#40;Main Project&#41;
 
