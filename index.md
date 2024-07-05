@@ -46,7 +46,7 @@ For my first milestone, I have created the main body of the machine, creating th
 
 
 
-# Code
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -234,6 +234,9 @@ Serial.println(AcZ);
 </html>
 
 
+
+<!---
+
 # Bill of Materials &#40;Main Project&#41;
 
 | **Part** | **Note** | **Price** | **Link** |
@@ -253,7 +256,7 @@ Serial.println(AcZ);
 | 9V Battery (generic) | Powers the body of the robot via the 9V battery clip | $10.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Battery Holder, 18650 x 2 | Holds batteries to substitute as a power source | $9.48 | <a href="https://www.newark.com/keystone/1048/battery-holder-18650-li-ion-2cell/dp/56T2029?COM=ref_hackster&CMP=Hackster-NA-project-e96ead-Jun-24"> Link </a> |
 
-<!--- 
+
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 --->
 
