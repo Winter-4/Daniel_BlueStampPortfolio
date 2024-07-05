@@ -19,12 +19,17 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 
 For my third milestone, I attached the top frame to the body of the robot, added a switch to the body, fixed the power disrepencies in the wheels, and started the concept for my glove. My biggest challenge at BSE was resolving an issue regarding an inconsistency in power: by focusing on specific areas that could be problematic, I removed the possibility for error in the motor and energy by changing the battery and constantly checking the voltage. Another issue was pairng to Arduinos together via HC-05 bluetooth modules, and we fixed that by troubleshooting very rigorously. Key topics I have learned in this process include soldering, isolating issues in an engineering process, and how voltage and current function using Ohm's Law. I hope to learn how to analyze code and interpret it into hardware-based actions. 
 
+
 <p align="center">
-  <img src="IMG_0015.jpeg" alt="Final milestone breadboard" height="800" style="border: 3px solid #ADD8E6;">
+  <img src="IMG_0015.jpeg" alt="Final milestone breadboard" height="780" style="border: 3px solid #ADD8E6;">
   <br>
   <small>Figure 1: An image of the basic, completed breadboard that communicates basic movemements to the slave bluetooth module.</small>
 </p>
 
+
+<h2 id="subtitle">Pairing bluetooth modules</h2>
+
+In order to pair the two bluetooth modules, I set both modules to "AT mode", a configuration built into the bluetooth modules allowing me to assign the device roles to master and slave respectively. Then, a set of commands were sent to both bluetooth modules with code that reads commands of the serial monitor and executes the corresponding actions. 
 
 
 # Second Milestone: 6/20/24
@@ -40,7 +45,7 @@ For my second milestone, I implemented a bluetooth module that is paired with th
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eNRlPnJSBbU?si=I9Fve0eyifgYlNAW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border: 3px solid #c3ff00;"></iframe>
 
 
-For my first milestone, I have created the main body of the machine, creating the backbone for bluetooth connection. All motors work in coordination with the code inputted into the Arduino, being transported into an L298N Motor Controller. All of this is being powered by a battery case with an On/Off switch. One challenge I ran into was providing enough power for the motors to run. As a result, I used my computer to power the motors when testing, and plan to substitute and test my battery, case, and wiring for further ease of use. 
+For my first milestone, I have created the main body of the machine, creating the backbone for bluetooth connection. All motors work in coordination with the code inputted into the Arduino, being transported into an L298N Motor Controller. All of this is being powered by a battery case with an On/Off switch. Four DC motors power each wheel, rotating using the output of an L-298 H-bridge motor control. One limit of only one L-298 H-bridge is that it can only control the motors in pairs, and cannot control each motor individually. The Arduino NANO and UNO are microcontrollers that allow efficient code processing with an input and output. One challenge I ran into was providing enough power for the motors to run. As a result, I used my computer to power the motors when testing, and plan to substitute and test my battery, case, and wiring for further ease of use. 
 
 
 # Schematics 
