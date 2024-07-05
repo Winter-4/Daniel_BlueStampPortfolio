@@ -16,6 +16,19 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 
 For my modded milestone, I replaced the wheels with mecanum wheels, which have 8 wheels within each individual wheels, expanding my effective range of actions. To compensate for the expanded functinoality of the mecanum wheels, I added another L298 motor controller, allowing me to control each motor's direction and power individually. This allows the robot to move in all 4 four diagonal movements without needing to move. Most unique of all (to me), mecanum wheels allow the robot to move in the left and right directions perpendicular to the direction of the motors, once again without the need to rotate the motor. Lastly, I added more code depending on the magnitude of tilt in the motor to output different actions. For example, in the case of forward and backward movements, the robot will move at an increased speed with a higher degree of tilt. Regarding the left and right controls, a slight turn in both directions results in stationary left and right rotations. Contrarily, a stronger left and right controls results in a forward and left rotation as well as forward and right rotation respectively. I also expanded the breadboard to include two buttons that allows for the previously mentioned perpendicular movement to the left and right. 
 
+<p align="center">
+  <img src="IMG_0021.jpeg" alt="Modded milestone breadboard" height="750" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1;">
+  <br>
+  <small>Figure 1: A complex, completed breadboard with two supplementary buttons with the features of moving left and right (the left button allows leftward movement, and the same is applied to the right button).</small>
+</p>
+
+<p align="center">
+  <img src="IMG_0020.jpeg" alt="Modded milestone breadboard" height="750" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1;">
+  <br>
+  <small>Figure 2: My completed robot: two L298 motor controllers, an Arduino UNO, four DC motors, an HC-05 bluetooth module, and a power source (includes variability). The motor controller closer to the Arduino UNO (the green rectangle) controls the front two motors, and the motor controller further from the UNO controls the back two motors. .</small>
+</p>
+
+
 
 
 # Final Milestone: 6/24/24
@@ -27,11 +40,10 @@ For my third milestone, I attached the top frame to the body of the robot, added
 
 
 
-
 <p align="center">
   <img src="IMG_0015.jpeg" alt="Final milestone breadboard" height="750" style="border: 3px solid #ADD8E6;">
   <br>
-  <small>Figure 1: An image of the basic, completed breadboard that communicates basic movemements to the slave bluetooth module.</small>
+  <small>Figure 3: An image of the basic, completed breadboard that communicates basic movemements to the slave bluetooth module.</small>
 </p>
 
 
