@@ -10,6 +10,12 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
   <img src="headshot.JPG" alt="Headshot" height="500" style="border: 3px solid green;">
 </p> 
 
+# Modded Milestone: 7/05/24
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h9s9ytI3gEE?si=vlpUg0wPEjz6c3e7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style = "border: 3px solid #c3ff00;"></iframe>
+
+For my modded milestone, I replaced the wheels with mecanum wheels, which have 8 wheels within each individual wheels, expanding my effective range of actions. To compensate for the expanded functinoality of the mecanum wheels, I added another L298 motor controller, allowing me to control each motor's direction and power individually. This allows the robot to move in all 4 four diagonal movements without needing to move. Most unique of all (to me), mecanum wheels allow the robot to move in the left and right directions perpendicular to the direction of the motors, once again without the need to rotate the motor. Lastly, I added more code depending on the magnitude of tilt in the motor to output different actions. For example, in the case of forward and backward movements, the robot will move at an increased speed with a higher degree of tilt. Regarding the left and right controls, a slight turn in both directions results in stationary left and right rotations. Contrarily, a stronger left and right controls results in a forward and left rotation as well as forward and right rotation respectively. I also expanded the breadboard to include two buttons that allows for the previously mentioned perpendicular movement to the left and right. 
+
 
 
 # Final Milestone: 6/24/24
@@ -20,8 +26,10 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 For my third milestone, I attached the top frame to the body of the robot, added a switch to the body, fixed the power disrepencies in the wheels, and started the concept for my glove. My biggest challenge at BSE was resolving an issue regarding an inconsistency in power: by focusing on specific areas that could be problematic, I removed the possibility for error in the motor and energy by changing the battery and constantly checking the voltage. Another issue was pairng to Arduinos together via HC-05 bluetooth modules, and we fixed that by troubleshooting very rigorously. Key topics I have learned in this process include soldering, isolating issues in an engineering process, and how voltage and current function using Ohm's Law. I hope to learn how to analyze code and interpret it into hardware-based actions. 
 
 
+
+
 <p align="center">
-  <img src="IMG_0015.jpeg" alt="Final milestone breadboard" height="780" style="border: 3px solid #ADD8E6;">
+  <img src="IMG_0015.jpeg" alt="Final milestone breadboard" height="750" style="border: 3px solid #ADD8E6;">
   <br>
   <small>Figure 1: An image of the basic, completed breadboard that communicates basic movemements to the slave bluetooth module.</small>
 </p>
