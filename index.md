@@ -17,7 +17,7 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 For my modded milestone, I replaced the wheels with mecanum wheels, which have 8 wheels within each individual wheels, expanding my effective range of actions. To compensate for the expanded functinoality of the mecanum wheels, I added another L298 motor controller, allowing me to control each motor's direction and power individually. This allows the robot to move in all 4 four diagonal movements without needing to move. Most unique of all (to me), mecanum wheels allow the robot to move in the left and right directions perpendicular to the direction of the motors, once again without the need to rotate the motor. Lastly, I added more code depending on the magnitude of tilt in the motor to output different actions. For example, in the case of forward and backward movements, the robot will move at an increased speed with a higher degree of tilt. Regarding the left and right controls, a slight turn in both directions results in stationary left and right rotations. Contrarily, a stronger left and right controls results in a forward and left rotation as well as forward and right rotation respectively. I also expanded the breadboard to include two buttons that allows for the previously mentioned perpendicular movement to the left and right. 
 
 <p align="center">
-  <img src="IMG_0021.jpeg" alt="Modded milestone breadboard" height="750" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1; transform: rotate(-90deg);">
+  <img src="IMG_0021.jpeg" alt="Modded milestone breadboard" height="680" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1; transform: rotate(-90deg);">
   <br>
 
   <small>Figure 1: A complex, completed breadboard with two supplementary buttons with the features of moving left and right (the left button allows leftward movement, and the same is applied to the right button).</small>
@@ -60,6 +60,8 @@ In order to pair the two bluetooth modules, I set both modules to "AT mode", a c
 
 
 For my second milestone, I implemented a bluetooth module that is paired with the main body to take inputs and translate them into motor actions. The bluetooth takes inputs from the accelerometer and gyroscope, being processed by the Arduino Nano R3 on the master module. The accelerometer and gyroscope measures "AcX"(yaw), "AxY"(pitch), and "AcZ"(roll). Each output of the master bluetooth module is read and checked with a series of conditions in which it communicates with the slave bluetooth module via sending letters. Then, the information is transferred (via Bluetooth) into the "slave" bluetooth module in order to be processed by an Arduino UNO and then outputted by an L298 motor controller with DC motors. What has surprised me the most was comprehensibility of the input process on the hand-mounted bluetooth module, where the data is printed in the Arduino IDE module. A previous challenge I overcame was the bluetooth connection process: it was surprisingly complex and took a long time to troubleshoot through. Before completing the final milestone, I will fix the consistency of power outage within the motors, as well as fix the battery output so that I do not have to use the power of my computer to power the motors. 
+
+
 
 # First Milestone: 6/18/24
 
