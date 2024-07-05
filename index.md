@@ -61,6 +61,12 @@ In order to pair the two bluetooth modules, I set both modules to "AT mode", a c
 
 For my second milestone, I implemented a bluetooth module that is paired with the main body to take inputs and translate them into motor actions. The bluetooth takes inputs from the accelerometer and gyroscope, being processed by the Arduino Nano R3 on the master module. The accelerometer and gyroscope measures "AcX"(yaw), "AxY"(pitch), and "AcZ"(roll). Each output of the master bluetooth module is read and checked with a series of conditions in which it communicates with the slave bluetooth module via sending letters. Then, the information is transferred (via Bluetooth) into the "slave" bluetooth module in order to be processed by an Arduino UNO and then outputted by an L298 motor controller with DC motors. What has surprised me the most was comprehensibility of the input process on the hand-mounted bluetooth module, where the data is printed in the Arduino IDE module. A previous challenge I overcame was the bluetooth connection process: it was surprisingly complex and took a long time to troubleshoot through. Before completing the final milestone, I will fix the consistency of power outage within the motors, as well as fix the battery output so that I do not have to use the power of my computer to power the motors. 
 
+<p align="center">
+  <img src="HC-05-Bluetooth-Module-Pinout.png" alt="Final milestone breadboard" height="750" style="border: 3px solid #ADD8E6;">
+  <br>
+  <small>Figure 4: Diagram of an HC-05 Bluetooth Module, and its pins. Pin #1 allows the user to switch between data modes of the blutooth module, including data mode (LOW) and AT mode (HIGH). Pin #2 powers the bluetooth module, connecting to a +5V power supply. Pin #3 is the ground pin of the module, which connects it to the system's ground. Pin #4, TX (also known as transmitter), transmits serial data given out by the whole bluetooth module. Pin #5, RX (also known as receiver), receives serial data broadcasted via Bluetooth with this pin. Pin #6 , not used by my robot, connects the LED to the bluetooth module. Pin #7, the LED, indicates, through two disctint, recognizable series of blinking, conveys the mode of the bluetooth module. Pin #8, the button, controls the key / enable pin to toggle between data and AT mode. </small>
+</p>
+
 
 
 # First Milestone: 6/18/24
