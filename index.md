@@ -72,7 +72,7 @@ For my first milestone, I have created the main body of the machine, creating th
     <h1>Code</h1>
     <div class="code-block">
         <pre>
-<span style="color:#FFFFFF;"><b>Arduino Uno & H-Bridge (car)</b></span>
+<span style="color:#FFFFFF;"><b>Arduino NANO code (controlling code)</b></span>
             <code>
 <span style="color:#FFFFFF;">
 #include <SoftwareSerial.h>
