@@ -68,7 +68,7 @@ In order to pair the two bluetooth modules, I set both modules to "AT mode", a c
 
 <h2 id="subtitle">Pairing code (for both master and slave)</h2>
 
-```c++
+```none
 
 #include <SoftwareSerial.h>
 
@@ -98,7 +98,7 @@ Upon uploading the above code to both bluetooth modules, AT commands would be se
 
 <h2 id="subtitle">AT commands for master bluetooth module</h2>
 
-```c++
+```none
 
 AT | OK | Check if the HC-05 is in AT Command mode
 
