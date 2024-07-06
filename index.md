@@ -110,7 +110,7 @@ AT+ADDR? | <addr>, OK | Displays the HC-05's address
 
 <h2 id="subtitle">AT commands for slave bluetooth module</h2>
 
-```c++
+```none
 
 AT | OK | Check if the HC-05 is in AT Command mode
 
