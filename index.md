@@ -84,6 +84,7 @@ For my first milestone, I have created the main body of the machine, creating th
 
 # Code 
 
+<h2 id="subtitle">Arduino NANO code (controlling the hand)</h2>
 
 ```c++
 
@@ -242,8 +243,323 @@ Serial.println(AcZ);
 ```
 
 
+<h2 id="subtitle">Arduino UNO code (controlling the robot)</h2>
+
+```c++
+
+#include <SoftwareSerial.h>
+SoftwareSerial BT_Serial(3, 2); // RX, TX
+// Front motors
+#define enA 10//Enable1 L298 Pin enA 
+#define in1 9 //Motor1  L298 Pin in1 
+#define in2 8 //Motor1  L298 Pin in1 
+#define in3 7 //Motor2  L298 Pin in1 
+#define in4 6 //Motor2  L298 Pin in1 
+#define enB 5 //Enable2 L298 Pin enB 
+
+//Back motors
+#define enC A0
+#define in5 A1
+#define in6 A2
+#define in7 A3
+#define in8 A4
+#define enD A5
 
 
+char bt_data; // variable to receive data from the serial port
+int Speed = 150; //Write The Duty Cycle 0 to 255 Enable Pins for Motor Speed  
+
+#define speed_WASD_slow 130
+#define speed_WASD_fast 240
+#define speed_turn 150
+#define speed_circle_slow 130
+#define speed_circle_fast 240
+#define front_wheel_offset 125
+
+void setup() { // put your setup code here, to run once
+
+Serial.begin(9600); // start serial communication at 9600bps
+BT_Serial.begin(9600); 
+
+// Front motors
+pinMode(enA, OUTPUT); // declare as output for L298 Pin enA 
+pinMode(in1, OUTPUT); // declare as output for L298 Pin in1 
+pinMode(in2, OUTPUT); // declare as output for L298 Pin in2 
+pinMode(in3, OUTPUT); // declare as output for L298 Pin in3   
+pinMode(in4, OUTPUT); // declare as output for L298 Pin in4 
+pinMode(enB, OUTPUT); // declare as output for L298 Pin enB 
+
+// Back motors
+pinMode(enC, OUTPUT); // declare as output for L298 Pin enC 
+pinMode(in5, OUTPUT); // declare as output for L298 Pin in5 
+pinMode(in6, OUTPUT); // declare as output for L298 Pin in6 
+pinMode(in7, OUTPUT); // declare as output for L298 Pin in7 
+pinMode(in8, OUTPUT); // declare as output for L298 Pin in8 
+pinMode(enD, OUTPUT); // declare as output for L298 Pin enD 
+
+delay(200);
+}
+void loop(){
+if(BT_Serial.available() > 0){  //if some date is sent, reads it and saves in state     
+bt_data = BT_Serial.read(); 
+Serial.println(bt_data);          
+}
+  
+     if(bt_data == 'f'){forword_WEAK();  Speed=180;}  // if the bt_data is 'f' the DC motor will go forward
+else if(bt_data == 'F'){forword_STRONG();  Speed=180;}
+else if(bt_data == 'b'){backword_WEAK(); Speed=180;}  // if the bt_data is 'b' the motor will Reverse
+else if(bt_data == 'B'){backword_STRONG(); Speed=180;}
+else if(bt_data == 'l'){turnLeft(); Speed=250;}  // if the bt_data is 'l' the motor will turn left
+else if(bt_data == 'r'){turnRight();Speed=250;} // if the bt_data is 'r' the motor will turn right
+else if(bt_data == 'L'){circleRight(); Speed = 180;} //if bt_data takes in 't', then the car will turn forward + right
+else if(bt_data == 'R'){circleLeft(); Speed = 180;}
+else if(bt_data == '1'){forward_left(); Speed = 180;}
+else if(bt_data == '2'){forward_right(); Speed = 180;}
+else if(bt_data == '3'){backward_left(); Speed = 180;}
+else if(bt_data == '4'){backward_right(); Speed = 180;}
+else if(bt_data == '5'){perpendicular_left(); Speed = 180;}
+else if(bt_data == '6'){perpendicular_right(); Speed = 180;}
+if(bt_data == 's'){Stop(); }     // if the bt_data 's' the motor will Stop
+//No else if for the stop because sometimes the motor bugs out if you switch from several movements too fast
+
+
+delay(50);
+}
+
+//NOTE: CW IS FORWARD, CCW IS BACKWARD
+
+void forword_STRONG(){  //forword with strong force
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // BackLeft Motor forword Pin 
+}
+
+void forword_WEAK(){  //forword with weak force
+analogWrite(enA, speed_WASD_slow);
+analogWrite(enB, speed_WASD_slow);
+analogWrite(enC, speed_WASD_slow);
+analogWrite(enD, speed_WASD_slow);
+digitalWrite(in1, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+}
+
+void backword_STRONG(){ //backword with strong force
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in2, HIGH); // Front Left Motor backword Pin 
+digitalWrite(in3, HIGH); // Front Right Motor backword Pin 
+digitalWrite(in4, LOW);  // Front Right Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, HIGH); // Back Right Motor backword Pin 
+digitalWrite(in7, HIGH); // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);  // Back Left Motor forword Pin 
+}
+
+void backword_WEAK(){ //backword with weak force
+analogWrite(enA, speed_WASD_slow);
+analogWrite(enB, speed_WASD_slow);
+analogWrite(enC, speed_WASD_slow);
+analogWrite(enD, speed_WASD_slow);
+digitalWrite(in1, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in2, HIGH); // Front Left Motor backword Pin 
+digitalWrite(in3, HIGH); // Front Right Motor backword Pin 
+digitalWrite(in4, LOW);  // Front Right Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, HIGH); // Back Right Motor backword Pin 
+digitalWrite(in7, HIGH); // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);  // Back Left Motor forword Pin 
+}
+
+void turnRight(){ //turnRight
+analogWrite(enA, speed_turn);
+analogWrite(enB, speed_turn);
+analogWrite(enC, speed_turn);
+analogWrite(enD, speed_turn);
+digitalWrite(in1, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in2, HIGH); // Front Left Motor backword Pin  
+digitalWrite(in3, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, HIGH); // Back Right Motor backword Pin  
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+}
+
+void turnLeft(){ //turnLeft
+analogWrite(enA, speed_turn);
+analogWrite(enB, speed_turn);
+analogWrite(enC, speed_turn); 
+analogWrite(enD, speed_turn);
+digitalWrite(in1, HIGH);  // Front Left Motor forword Pin 
+digitalWrite(in2, LOW);   // Front Left Motor backword Pin  
+digitalWrite(in3, HIGH);  // Front Right Motor backword Pin 
+digitalWrite(in4, LOW);   // Front Right Motor forword Pin 
+digitalWrite(in5, HIGH);  // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);   // Back Right Motor backword Pin  
+digitalWrite(in7, HIGH);  // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);   // Back Left Motor forword Pin 
+
+}
+
+void Stop(){ //stop
+digitalWrite(in1, LOW); //Front Right Motor forword Pin 
+digitalWrite(in2, LOW); //Front Right Motor backword Pin 
+digitalWrite(in3, LOW); //Front Left Motor backword Pin 
+digitalWrite(in4, LOW); //Front Left Motor forword Pin 
+digitalWrite(in5, LOW); //Back Right Motor forword Pin 
+digitalWrite(in6, LOW); //Back Right Motor backword Pin 
+digitalWrite(in7, LOW); //Left Motor backword Pin 
+digitalWrite(in8, LOW); //Left Motor forword Pin 
+}
+
+//TEST CODE
+void circleRight(){ //Make a circle turning right 
+analogWrite(enA, speed_circle_fast);
+analogWrite(enB, speed_circle_slow);
+analogWrite(enC, speed_circle_fast);
+analogWrite(enD, speed_circle_slow);
+digitalWrite(in1, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+
+}
+
+void circleLeft(){ //Make a circle turning right 
+analogWrite(enA, speed_circle_slow);
+analogWrite(enB, speed_circle_fast);
+analogWrite(enC, speed_circle_slow);
+analogWrite(enD, speed_circle_fast);
+digitalWrite(in1, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+}
+
+void forward_left(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in4, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+}
+
+void forward_right(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, LOW);  // Front Right Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);  // Back Left Motor forword Pin 
+}
+
+void backward_left(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, LOW);  // Front Right Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in3, HIGH); // Front Left Motor backword Pin 
+digitalWrite(in4, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, HIGH); // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);  // Back Left Motor forword Pin 
+}
+
+void backward_right(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, LOW);  // Front Right Motor forword Pin 
+digitalWrite(in2, HIGH); // Front Right Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in4, LOW);  // Front Left Motor forword Pin 
+digitalWrite(in5, LOW);  // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, HIGH); // Back Left Motor backword Pin 
+digitalWrite(in8, LOW);  // Back Left Motor forword Pin 
+}
+
+
+
+int consider_front_wheels(int variable){
+return variable + front_wheel_offset;
+}
+
+void perpendicular_left(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, HIGH); // Front Left Motor forword Pin 
+digitalWrite(in2, LOW);  // Front Left Motor backword Pin 
+digitalWrite(in3, HIGH);  // Front Right Motor backword Pin 
+digitalWrite(in4, LOW); // Front Right Motor forword Pin 
+digitalWrite(in5, LOW); // Back Right Motor forword Pin 
+digitalWrite(in6, HIGH);  // Back Right Motor backword Pin 
+digitalWrite(in7, LOW);  // Back Left Motor backword Pin 
+digitalWrite(in8, HIGH); // Back Left Motor forword Pin 
+}
+
+void perpendicular_right(){
+analogWrite(enA, speed_WASD_fast);
+analogWrite(enB, speed_WASD_fast);
+analogWrite(enC, speed_WASD_fast);
+analogWrite(enD, speed_WASD_fast);
+digitalWrite(in1, LOW); // Front Left Motor forword Pin 
+digitalWrite(in2, HIGH);  // Front Left Motor backword Pin 
+digitalWrite(in3, LOW);  // Front Right Motor backword Pin 
+digitalWrite(in4, HIGH); // Front Right Motor forword Pin 
+digitalWrite(in5, HIGH); // Back Right Motor forword Pin 
+digitalWrite(in6, LOW);  // Back Right Motor backword Pin 
+digitalWrite(in7, HIGH);  // Back Left Motor backword Pin 
+digitalWrite(in8, LOW); // Back Left Motor forword Pin 
+}
+
+
+```
 
 # Bill of Materials &#40;Main Project&#41;
 
@@ -251,7 +567,7 @@ Serial.println(AcZ);
 |:--:|:--:|:--:|:--:|
 | Arduino UNO | Inputs code from Arduino IDE app | $25.81 | <a href="https://www.newark.com/arduino/a000066/dev-board-atmega328-arduino-uno/dp/78T1601?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-24"> Link </a> |
 | Arduino Nano R3 | Transports inputs in the hand-mounted bluetooth gauntlet | $23.23 | <a href="https://www.newark.com/arduino/a000005/dev-board-atmega328-arduino-nano/dp/13T9275"> Link </a> |
-| Inertial Measurement Unit (IMU) (6 deg of freedom) | What the item is used for | $5.99 | <a href="https://www.amazon.com/dp/B008BOPN40/?tag=octopart00-20"> Link </a> |
+| Inertial Measurement Unit (IMU) (6 deg of freedom) | Measures the tilt of the unit | $5.99 | <a href="https://www.amazon.com/dp/B008BOPN40/?tag=octopart00-20"> Link </a> |
 | SparkFun Dual H-Bridge motor drivers L298 | Transports actions into the motors using code from the Arduino | $9.99 | <a href="https://www.amazon.com/Stepper-Controller-Arduino-Envistia-Mall/dp/B07NKJFTGM?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A1CV2ETGSPQEB3"> Link </a> |
 | Solderless Breadboard Half Size | Connects the actions through bluetooth | $4.96 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | HC-05 Bluetooth Module | Provides Bluetooth connection between the car and arm gauntlet | $10.39 | <a href="https://www.amazon.com/HiLetgo-Wireless-Bluetooth-Transceiver-Arduino/dp/B071YJG8DR"> Link </a> |
@@ -263,12 +579,6 @@ Serial.println(AcZ);
 | 9V Battery Clip | Connects the battery to the body of the robot | $0.54 | <a href="https://www.newark.com/keystone/233/battery-strap-9v-wire-lead/dp/22C4351?COM=ref_hackster&CMP=Hackster-NA-project-94b13d-Jun-24"> Link </a> |
 | 9V Battery (generic) | Powers the body of the robot via the 9V battery clip | $10.99 | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
 | Battery Holder, 18650 x 2 | Holds batteries to substitute as a power source | $9.48 | <a href="https://www.newark.com/keystone/1048/battery-holder-18650-li-ion-2cell/dp/56T2029?COM=ref_hackster&CMP=Hackster-NA-project-e96ead-Jun-24"> Link </a> |
-
-
-| Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
-
-
-
 
 
 # Other Resources/Examples
