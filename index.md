@@ -48,11 +48,6 @@ For my third milestone, I attached the top frame to the body of the robot, added
 </p>
 
 
-<h2 id="subtitle">Pairing bluetooth modules</h2>
-
-In order to pair the two bluetooth modules, I set both modules to "AT mode", a configuration built into the bluetooth modules allowing me to assign the device roles to master and slave respectively. Then, a set of commands were sent to both bluetooth modules with code that reads commands of the serial monitor and executes the corresponding actions. 
-
-
 # Second Milestone: 6/20/24
 
 
@@ -64,10 +59,69 @@ For my second milestone, I implemented a bluetooth module that is paired with th
 <p align="center">
   <img src="HC-05-Bluetooth-Module-Pinout.png" alt="Final milestone breadboard" height="750" style="border: 3px solid #ADD8E6;">
   <br>
-  <small>Figure 4: Diagram of an HC-05 Bluetooth Module, and its pins. Pin #1 allows the user to switch between data modes of the blutooth module, including data mode (LOW) and AT mode (HIGH). Pin #2 powers the bluetooth module, connecting to a +5V power supply. Pin #3 is the ground pin of the module, which connects it to the system's ground. Pin #4, TX (also known as transmitter), transmits serial data given out by the whole bluetooth module. Pin #5, RX (also known as receiver), receives serial data broadcasted via Bluetooth with this pin. Pin #6 , not used by my robot, connects the LED to the bluetooth module. Pin #7, the LED, indicates, through two disctint, recognizable series of blinking, conveys the mode of the bluetooth module. Pin #8, the button, controls the key / enable pin to toggle between data and AT mode. </small>
+  <small>Figure 4: Diagram of an HC-05 Bluetooth Module, and its pins. Pin #1 allows the user to switch between data modes of the blutooth module, including data mode (LOW) and AT mode (HIGH). Pin #2 powers the bluetooth module, connecting to a +5V power supply. Pin #3 is the ground pin of the module, which connects it to the system's ground. Pin #4, TX (also known as transmitter), transmits serial data given out by the whole bluetooth module. Pin #5, RX (also known as receiver), receives serial data broadcasted via Bluetooth with this pin. Pin #6 , not used by my robot, connects the LED to the bluetooth module. Pin #7, the LED, indicates, through two disctint, recognizable series of blinking, conveys the mode of the bluetooth module. Pin #8, the button, controls the key / enable pin to toggle between data and AT mode. (credit to "components 101") </small>
 </p>
 
+<h2 id="subtitle">Pairing bluetooth modules</h2>
 
+In order to pair the two bluetooth modules, I set both modules to "AT mode", a configuration built into the bluetooth modules allowing me to assign the device roles to master and slave respectively. Then, a set of commands were sent to both bluetooth modules with code that reads commands of the serial monitor and executes the corresponding actions. The same code is used for both the master and slave bluetooth module, although different commands are used to differentiate between the two.
+
+<h2 id="subtitle">Pairing code (for both master and slave)</h2>
+
+```c++
+
+#include <SoftwareSerial.h>
+
+SoftwareSerial Bluetooth(3,2);
+
+
+void setup() {
+  Serial.begin(9600);
+  Bluetooth.begin(38400);
+
+}
+
+void loop() {
+  if (Bluetooth.available()){
+    Serial.write(Bluetooth.read());
+  }
+  if (Serial.available()){
+    Bluetooth.write(Serial.read());
+  }
+}
+
+
+
+```
+
+Upon uploading the above code to both bluetooth modules, AT commands would be sent in order to associate one specific bluetooth module (the one on the breadboard in this case) as the master, and the other (the one on the robot) as a slave. 
+
+<h2 id="subtitle">AT commands for master bluetooth module</h2>
+
+```c++
+
+AT | OK | Check if the HC-05 is in AT Command mode
+
+AT+ROLE=0 | OK | This makes the HC=05 a Slave
+
+AT+ADDR? | <addr>, OK | Displays the HC-05's address
+
+``` 
+
+<h2 id="subtitle">AT commands for slave bluetooth module</h2>
+
+```c++
+
+AT | OK | Check if the HC-05 is in AT Command mode
+
+AT+ROLE=1 | OK | This makes the HC-05 a Master
+
+AT+CMODE=0 | OK | This allows the HC-05 connect to a specified address
+
+AT+BIND=00<addr> | OK | When the HC-05 turns on, it will look for this address
+
+
+```
 
 # First Milestone: 6/18/24
 
