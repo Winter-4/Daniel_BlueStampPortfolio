@@ -82,39 +82,11 @@ For my first milestone, I have created the main body of the machine, creating th
   <img src="https://marobotic.com/wp-content/uploads/2024/02/Arduino-based-Hand-Gesture-Control-Robot-Circuit-Diagram-MArobotics.png" alt="Wiring configuration" style="border: 5px solid; border-image: linear-gradient(to right, yellow, green, blue) 1;">
 </p>
 
+# Code 
 
 
+```c++
 
-
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Pages Site</title>
-    <style>
-        .code-block {
-            overflow-x: auto;
-            white-space: pre;
-            width: 750px;
-            height: 475px;
-            max-height: 475px;
-            background-color: #1E1E1E; /* Optional: Set background color */
-            padding: 5px;
-            border: 2px solid #CCCCCC;
-            border-radius: 10px; /* Optional: Rounded corners */
-            font-family: Consolas, Monaco, 'Andale Mono', monospace; /* Example font */
-            font-size: 14px; /* Example font size */
-        }
-    </style>
-</head>
-<body>
-    <h1>Code</h1>
-    <div class="code-block">
-        <pre>
-<span style="color:#FFFFFF;"><b>Arduino NANO code (controlling code)</b></span>
-            <code>
-<span style="color:#FFFFFF;">
 #include <SoftwareSerial.h>
 SoftwareSerial BT_Serial(3, 2); // RX, TX
 
@@ -266,16 +238,12 @@ Serial.print(AcY);
 Serial.print("\t");
 Serial.println(AcZ); 
 }
-</span>
-            </code>
-        </pre>
-    </div>
-</body>
-</html>
+
+```
 
 
 
-<!---
+
 
 # Bill of Materials &#40;Main Project&#41;
 
@@ -298,7 +266,7 @@ Serial.println(AcZ);
 
 
 | Item Name | What the item is used for | $Price | <a href="https://www.amazon.com/Arduino-A000066-ARDUINO-UNO-R3/dp/B008GRTSV6/"> Link </a> |
---->
+
 
 
 
