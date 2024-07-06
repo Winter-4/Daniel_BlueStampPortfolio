@@ -19,12 +19,11 @@ For my modded milestone, I replaced the wheels with mecanum wheels, which have 8
 <p align="center">
   <img src="IMG_0021.jpeg" alt="Modded milestone breadboard" height="450" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1; transform: rotate(-90deg);">
   <br>
-
   <small>Figure 1: A complex, completed breadboard with two supplementary buttons with the features of moving left and right (the left button allows leftward movement, and the same is applied to the right button).</small>
 </p>
 
 <p align="center">
-  <img src="IMG_0020.jpeg" alt="Modded milestone breadboard" height="450" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1;">
+  <img src="IMG_0020.jpeg" alt="Modded milestone breadboard" height="450" style="border: 6px solid; border-image: linear-gradient(to right, darkblue, lightblue) 1; transform: rotate(-90deg);">
   <br>
   <small>Figure 2: My completed robot: two L298 motor controllers, an Arduino UNO, four DC motors, an HC-05 bluetooth module, and a power source (includes variability). The motor controller closer to the Arduino UNO (the green rectangle) controls the front two motors, and the motor controller further from the UNO controls the back two motors. .</small>
 </p>
@@ -134,6 +133,8 @@ For my first milestone, I have created the main body of the machine, creating th
 # Schematics 
 <p align="center">
   <img src="https://marobotic.com/wp-content/uploads/2024/02/Arduino-based-Hand-Gesture-Control-Robot-Circuit-Diagram-MArobotics.png" alt="Wiring configuration" style="border: 5px solid; border-image: linear-gradient(to right, yellow, green, blue) 1;">
+</p>
+<small>Figure 5: A basic birds-eyeview of the unmodded robot with all wiring configurations. </small>
 </p>
 
 # Code 
