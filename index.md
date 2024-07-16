@@ -7,7 +7,7 @@ My project is a robot controlled by gestures from a bluetooth-connected gauntlet
 | Daniel J. | Carlmont High School | Mechanical Engineering | Incoming Junior
 
 <p align="center">
-  <img src="Daniel_J.JPG" alt="Headshot" height="500" style="border: 3px solid green;">
+  <img src="Daniel_J.HEIC" alt="Headshot" height="500" style="border: 3px solid green;">
 </p> 
 
 # Modded Milestone: 7/05/24
